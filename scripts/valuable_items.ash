@@ -17,10 +17,26 @@ void main()
 		int n;
 	};
 	
+	int[item] add_maps(int[item] m1, int[item] m2)
+	{
+		int[item] out = m1;
+		foreach it,n in m2 {
+			if (out contains it) { out[it] += n; }
+			else { out[it] = n; }
+		}
+		return out;
+	}
+	
+	int[item] my_items;
+	my_items = add_maps(my_items, get_inventory());
+	my_items = add_maps(my_items, get_storage());
+	my_items = add_maps(my_items, get_closet ());
+	my_items = add_maps(my_items, get_display());
+	
 	it_val[int] valuable_items;
 	
 	int size = 0;
-	foreach it,n in get_inventory()
+	foreach it,n in my_items
 	{
 		int price = historical_price(it);
 		it_val rec;
